@@ -24,10 +24,21 @@ body {
   height: 100%;
 }
 
+.drawn {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .card {
   height: 100%;
   flex-grow: 1;
   padding: 0 25px 25px 25px;
+  text-align: center;
 }
 
 .doritos-logo {
@@ -52,6 +63,11 @@ body {
   border-left: none;
   vertical-align: bottom;
   padding-bottom: 15px;
+}
+
+input {
+  display: block;
+  margin: auto;
 }
 
 table {
