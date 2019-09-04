@@ -1,0 +1,6 @@
+node_modules
+.cache
+dist
+img/localhost_files
+img/localhost.htm
+.DS_Store
