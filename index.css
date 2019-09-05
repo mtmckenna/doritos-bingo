@@ -27,11 +27,15 @@ body {
 .drawn {
   width: 200px;
   height: 200px;
-  background-color: pink;
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.drawn img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .card {

@@ -23,6 +23,18 @@ export const DORITOS = [
   { name: "Spicy Nacho", img: "doritos-spicy-nacho.jpeg" },
 ];
 
+DORITOS.forEach((dorito) => {
+  const img = document.createElement("img");
+  img.src = dorito.img;
+  dorito.imageElement = img;
+});
+
+GUMMIS.forEach((gummi) => {
+  const img = document.createElement("img");
+  img.src = gummi.img;
+  gummi.imageElement = img;
+});
+
 export function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));

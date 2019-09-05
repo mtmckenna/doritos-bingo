@@ -4,11 +4,8 @@ import { saveAs } from "file-saver";
 import "./index.css";
 import { GUMMIS, DORITOS, shuffle } from "./shared";
 
-
 const table = document.getElementsByTagName("table")[0];
-
 const rows = table.getElementsByTagName("tr");
-
 let count = 0;
 
 async function go() {
@@ -17,9 +14,9 @@ async function go() {
     shuffle(DORITOS);
     let doritosInPlay = DORITOS.slice(0, 5);
 
-    GUMMIS.forEach((gummy, i) => {
+    GUMMIS.forEach((gummi, i) => {
       const cell = rows[i + 1].getElementsByTagName("td")[0];
-      cell.style.backgroundImage = `url(${gummy.img})`;
+      cell.style.backgroundImage = `url(${gummi.img})`;
     });
 
     doritosInPlay.forEach((doritos, i) => {

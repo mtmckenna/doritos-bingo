@@ -1,30 +1,57 @@
-import { GUMMIS, DORITOS, shuffle } from "./shared";
+import { GUMMIS, DORITOS } from "./shared";
 import "./index.css";
 
 
-import { easeInOutExpo } from 'js-easing-functions';
-
 const doritosImage = document.getElementsByClassName("doritos-drawn")[0];
-const gummyImage = document.getElementsByClassName("gummy-drawn")[0];
-const duration = 2000;
-const startPosition = 0;
-const endPosition = 100;
+const gummiImage = document.getElementsByClassName("gummi-drawn")[0];
+const button = document.getElementsByClassName("shuffle")[0];
+const duration = 2500;
+const numDraws = 30;
+let times = [];
+let readyToShuffle = false;
+let startTime = 0;
 
-let startTime;
+button.addEventListener("click", () => readyToShuffle = true);
 
-function animate() {
-  startTime = performance.now();
-  tick(startTime);
-}
+showRandomDraw();
 
-function tick(time) {
-  const elapsed = time - startTime;
-  const easing = easeInOutExpo(elapsed, startPosition, endPosition, duration);
-  doritosImage.style.transform = `translateY(${easing}px)`;
+function animate(time) {
+  requestAnimationFrame(animate);
+  if (readyToShuffle) {
+    generateDrawTimes(time);
+    readyToShuffle = false;
+  }
 
-  if (elapsed < duration) {
-    requestAnimationFrame(tick);
+  const timeForNextImage = times[times.length - 1];
+  if (times.length > 0 && timeForNextImage < time) {
+    showRandomDraw();
+    times.pop();
   }
 }
 
-animate();
+function showRandomDraw() {
+  const dorito = randomElementFromArray(DORITOS);
+  doritosImage.innerHTML = "";
+  doritosImage.appendChild(dorito.imageElement);
+  doritosImage.innerHTML += `<br />${dorito.name}`;
+  const gummi = randomElementFromArray(GUMMIS);
+  gummiImage.innerHTML = "";
+  gummiImage.appendChild(gummi.imageElement);
+  gummiImage.innerHTML += `<br />${gummi.name}`;
+}
+
+function randomElementFromArray(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function generateDrawTimes(time) {
+  startTime = time;
+  times = [];
+  for (let i = 0; i < numDraws; i++) {
+    times.push(time + i / numDraws * duration);
+  }
+
+  times.reverse();
+}
+
+requestAnimationFrame(animate);
