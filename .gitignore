@@ -3,4 +3,5 @@ node_modules
 dist
 img/localhost_files
 img/localhost.htm
+dist.zip
 .DS_Store
